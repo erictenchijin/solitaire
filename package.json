@@ -1,0 +1,17 @@
+{
+  "name": "zen-solitaire",
+  "version": "1.0.0",
+  "description": "A zen-inspired Klondike solitaire game with minimalist design",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "vite": "^5.0.0"
+  },
+  "keywords": ["solitaire", "card-game", "zen", "klondike"],
+  "author": "",
+  "license": "MIT"
+}
