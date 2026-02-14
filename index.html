@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <meta name="description" content="A zen-inspired Klondike solitaire card game with minimalist design">
+  <title>Zen Solitaire</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="game-container">
+    <!-- Header with controls -->
+    <header class="game-header">
+      <div class="game-info">
+        <div class="info-item">
+          <span class="label">Moves:</span>
+          <span id="move-count" class="value">0</span>
+        </div>
+        <div class="info-item">
+          <span class="label">Time:</span>
+          <span id="timer" class="value">0:00</span>
+        </div>
+      </div>
+      <div class="game-controls">
+        <button id="new-game-btn" class="btn" aria-label="Start new game">New Game</button>
+        <button id="undo-btn" class="btn" aria-label="Undo last move" disabled>Undo</button>
+        <button id="settings-btn" class="btn" aria-label="Open settings">Settings</button>
+      </div>
+    </header>
+
+    <!-- Game board -->
+    <main class="game-board">
+      <!-- Top row: Stock, Waste, and Foundation piles -->
+      <div class="top-row">
+        <div class="stock-waste-group">
+          <div id="stock-pile" class="pile stock-pile" role="button" aria-label="Stock pile - Click to draw cards" tabindex="0">
+            <div class="pile-placeholder"></div>
+          </div>
+          <div id="waste-pile" class="pile waste-pile" aria-label="Waste pile">
+            <div class="pile-placeholder"></div>
+          </div>
+        </div>
+
+        <div class="foundation-group">
+          <div id="foundation-0" class="pile foundation-pile" data-suit="hearts" aria-label="Hearts foundation">
+            <div class="pile-placeholder">
+              <span class="suit-icon">♥</span>
+            </div>
+          </div>
+          <div id="foundation-1" class="pile foundation-pile" data-suit="diamonds" aria-label="Diamonds foundation">
+            <div class="pile-placeholder">
+              <span class="suit-icon">♦</span>
+            </div>
+          </div>
+          <div id="foundation-2" class="pile foundation-pile" data-suit="clubs" aria-label="Clubs foundation">
+            <div class="pile-placeholder">
+              <span class="suit-icon">♣</span>
+            </div>
+          </div>
+          <div id="foundation-3" class="pile foundation-pile" data-suit="spades" aria-label="Spades foundation">
+            <div class="pile-placeholder">
+              <span class="suit-icon">♠</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tableau piles -->
+      <div class="tableau-row">
+        <div id="tableau-0" class="pile tableau-pile" data-index="0" aria-label="Tableau pile 1"></div>
+        <div id="tableau-1" class="pile tableau-pile" data-index="1" aria-label="Tableau pile 2"></div>
+        <div id="tableau-2" class="pile tableau-pile" data-index="2" aria-label="Tableau pile 3"></div>
+        <div id="tableau-3" class="pile tableau-pile" data-index="3" aria-label="Tableau pile 4"></div>
+        <div id="tableau-4" class="pile tableau-pile" data-index="4" aria-label="Tableau pile 5"></div>
+        <div id="tableau-5" class="pile tableau-pile" data-index="5" aria-label="Tableau pile 6"></div>
+        <div id="tableau-6" class="pile tableau-pile" data-index="6" aria-label="Tableau pile 7"></div>
+      </div>
+    </main>
+
+    <!-- Game state announcements for screen readers -->
+    <div id="game-announcements" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></div>
+
+    <!-- Win modal -->
+    <div id="win-modal" class="modal hidden" role="dialog" aria-labelledby="win-title" aria-modal="true">
+      <div class="modal-content">
+        <h2 id="win-title">Congratulations!</h2>
+        <p>You won in <span id="final-moves">0</span> moves and <span id="final-time">0:00</span></p>
+        <button id="new-game-modal-btn" class="btn btn-primary">New Game</button>
+      </div>
+    </div>
+
+    <!-- Settings modal -->
+    <div id="settings-modal" class="modal hidden" role="dialog" aria-labelledby="settings-title" aria-modal="true">
+      <div class="modal-content">
+        <h2 id="settings-title">Settings</h2>
+        <div class="setting-item">
+          <label>
+            <input type="radio" name="draw-count" value="1" id="draw-1">
+            <span>Draw 1 card</span>
+          </label>
+        </div>
+        <div class="setting-item">
+          <label>
+            <input type="radio" name="draw-count" value="3" id="draw-3" checked>
+            <span>Draw 3 cards</span>
+          </label>
+        </div>
+        <div class="setting-item">
+          <label>
+            <input type="checkbox" id="auto-complete">
+            <span>Auto-complete when possible</span>
+          </label>
+        </div>
+        <button id="close-settings-btn" class="btn">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="js/game.js"></script>
+</body>
+</html>
